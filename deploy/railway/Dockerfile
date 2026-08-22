@@ -15,7 +15,8 @@ ENV PYTHONUNBUFFERED=1 \
     PATH="/home/frappe/.local/bin:${PATH}"
 
 # mariadb-client is required by `bench new-site` (it pipes the framework's schema
-# through the mysql CLI); libmariadb-dev is what mysqlclient compiles against.
+# through the mysql CLI); libmariadb-dev is what mysqlclient compiles against;
+# cron supplies the /usr/bin/crontab that `bench init` shells out to.
 RUN apt-get update && apt-get install -y --no-install-recommends \
       ca-certificates curl wget gnupg git \
       build-essential pkg-config \
@@ -23,6 +24,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
       libffi-dev libssl-dev libbz2-dev \
       libjpeg-dev zlib1g-dev libwebp-dev libfreetype6-dev \
       nginx gettext-base \
+      cron \
     && curl -fsSL https://deb.nodesource.com/setup_24.x | bash - \
     && apt-get install -y --no-install-recommends nodejs \
     && npm install -g yarn \
