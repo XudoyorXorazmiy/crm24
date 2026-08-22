@@ -1,8 +1,12 @@
-# Started by honcho from entrypoint.sh, cwd = /home/frappe/frappe-bench.
+# Started by honcho from entrypoint.sh with the bench root as app root.
 # nginx is the only process bound to Railway's public $PORT; the rest listen on
 # loopback and are reached through it.
+#
+# gunicorn must run from sites/: frappe resolves its own log files as "../logs/…"
+# relative to the working directory, and `bench` refuses to run from anywhere but
+# the bench root — hence the two different directories.
 nginx: nginx -c /home/frappe/nginx.conf -g "daemon off;"
-web: env/bin/gunicorn --bind 127.0.0.1:8000 --workers ${GUNICORN_WORKERS:-2} --timeout 120 --preload frappe.app:application
+web: bash -c 'cd /home/frappe/frappe-bench/sites && exec ../env/bin/gunicorn --bind 127.0.0.1:8000 --workers ${GUNICORN_WORKERS:-2} --timeout 120 --preload frappe.app:application'
 socketio: node apps/frappe/socketio.js
 worker: bench worker --queue short,default,long
 schedule: bench schedule
