@@ -1,0 +1,196 @@
+<template>
+  <div
+    class="flex p-3 items-center justify-between cursor-pointer hover:bg-surface-sidebar rounded"
+  >
+    <div class="w-7/12" @click="updateStep('view', data)">
+      <div class="text-base-medium text-ink-gray-7">{{ data.name }}</div>
+      <div
+        v-if="data.description && data.description.length > 0"
+        class="text-p-base w-full text-ink-gray-5 mt-0.5 whitespace-nowrap overflow-ellipsis overflow-hidden"
+      >
+        {{ data.description }}
+      </div>
+    </div>
+    <div class="w-3/12">
+      <select
+        v-model="localData.priority"
+        class="w-full h-7 text-base hover:bg-surface-gray-3 rounded-md p-0 pl-2 pr-5 bg-transparent -ml-2 border-0 text-ink-gray-8 focus-visible:!ring-0 bg-none truncate"
+        @update:modelValue="onPriorityChange"
+        @change="onPriorityChange"
+      >
+        <option
+          v-for="option in priorityOptions"
+          :key="option.value"
+          :value="option.value"
+        >
+          {{ option.label }}
+        </option>
+      </select>
+    </div>
+    <div class="flex justify-between items-center w-2/12">
+      <Switch
+        size="sm"
+        :modelValue="!data.disabled"
+        @update:modelValue="onToggle"
+      />
+      <Dropdown placement="right" :options="dropdownOptions">
+        <Button
+          icon="lucide-more-horizontal"
+          variant="ghost"
+          @click="isConfirmingDelete = false"
+        />
+      </Dropdown>
+    </div>
+  </div>
+  <Dialog
+    v-model:open="duplicateDialog.show"
+    :title="__('Duplicate Assignment Rule')"
+  >
+    <template #default>
+      <div class="flex flex-col gap-4">
+        <FormControl
+          v-model="duplicateDialog.name"
+          :label="__('New Assignment Rule Name')"
+          type="text"
+        />
+      </div>
+    </template>
+    <template #actions>
+      <div class="flex gap-2 justify-end">
+        <Button
+          variant="subtle"
+          :label="__('Close')"
+          @click="duplicateDialog.show = false"
+        />
+        <Button variant="solid" :label="__('Duplicate')" @click="duplicate()" />
+      </div>
+    </template>
+  </Dialog>
+</template>
+
+<script setup>
+import {
+  Button,
+  createResource,
+  Dialog,
+  Dropdown,
+  FormControl,
+  Switch,
+  toast,
+} from 'frappe-ui'
+import { useTelemetry } from 'frappe-ui/frappe'
+import { inject, ref, reactive, watch } from 'vue'
+import { ConfirmDelete } from '../../../utils'
+
+const { capture } = useTelemetry()
+
+const assignmentRulesList = inject('assignmentRulesList')
+const updateStep = inject('updateStep')
+
+const props = defineProps({
+  data: { type: Object, required: true },
+})
+
+const localData = reactive({ ...props.data })
+watch(
+  () => props.data,
+  (val) => Object.assign(localData, val),
+  { deep: true },
+)
+
+const priorityOptions = [
+  { label: 'Low', value: '0' },
+  { label: 'Low-Medium', value: '1' },
+  { label: 'Medium', value: '2' },
+  { label: 'Medium-High', value: '3' },
+  { label: 'High', value: '4' },
+]
+
+const duplicateDialog = ref({
+  show: false,
+  name: '',
+})
+
+const isConfirmingDelete = ref(false)
+
+const deleteAssignmentRule = () => {
+  createResource({
+    url: 'frappe.client.delete',
+    params: {
+      doctype: 'Assignment Rule',
+      name: props.data.name,
+    },
+    onSuccess: () => {
+      assignmentRulesList.reload()
+      isConfirmingDelete.value = false
+      toast.success(__('Assignment rule deleted'))
+    },
+    auto: true,
+  })
+}
+
+const dropdownOptions = [
+  {
+    label: __('Duplicate'),
+    onClick: () => {
+      duplicateDialog.value = {
+        show: true,
+        name: props.data.name + ' (Copy)',
+      }
+    },
+    icon: 'copy',
+  },
+  ...ConfirmDelete({
+    onConfirmDelete: () => deleteAssignmentRule(),
+    isConfirmingDelete,
+  }),
+]
+
+const duplicate = () => {
+  createResource({
+    url: 'crm.api.assignment_rule.duplicate_assignment_rule',
+    params: {
+      docname: props.data.name,
+      new_name: duplicateDialog.value.name,
+    },
+    onSuccess: (data) => {
+      assignmentRulesList.reload()
+      toast.success(__('Assignment rule duplicated'))
+      duplicateDialog.value.show = false
+      duplicateDialog.value.name = ''
+      updateStep('view', data)
+    },
+    auto: true,
+  })
+}
+
+const onPriorityChange = () => {
+  setAssignmentRuleValue('priority', localData.priority)
+}
+
+const onToggle = () => {
+  if (!props.data.users_exists && props.data.disabled) {
+    toast.error(__('Cannot enable rule without adding users in it'))
+    return
+  }
+  capture('assignment_rule_toggled', { enabled: Boolean(props.data.disabled) })
+  setAssignmentRuleValue('disabled', !props.data.disabled, 'status')
+}
+
+const setAssignmentRuleValue = (key, value, fieldName = undefined) => {
+  createResource({
+    url: 'frappe.client.set_value',
+    params: {
+      doctype: 'Assignment Rule',
+      name: props.data.name,
+      fieldname: key,
+      value: value,
+    },
+    onSuccess: () => {
+      assignmentRulesList.reload()
+      toast.success(__('Assignment rule {0} updated', [fieldName || key]))
+    },
+    auto: true,
+  })
+}
+</script>

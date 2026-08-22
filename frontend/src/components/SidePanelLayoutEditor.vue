@@ -1,0 +1,187 @@
+<template>
+  <div>
+    <Draggable :list="sections" item-key="name" class="flex flex-col gap-5.5">
+      <template #item="{ element: section }">
+        <div class="flex flex-col gap-3">
+          <div
+            class="flex items-center justify-between rounded px-2.5 py-2 bg-surface-gray-2"
+          >
+            <div
+              class="flex max-w-fit cursor-pointer items-center gap-2 text-base leading-4 text-ink-gray-9"
+              @click="section.opened = !section.opened"
+            >
+              <span
+                class="lucide-chevron-right h-4 transition-all duration-300 ease-in-out"
+                :class="{ 'rotate-90': section.opened }"
+                aria-hidden="true"
+              />
+              <div v-if="!section.editingLabel">
+                {{ __(section.label) || __('Untitled') }}
+              </div>
+              <div v-else class="flex gap-2 items-center">
+                <Input
+                  v-model="section.label"
+                  @keydown.enter="section.editingLabel = false"
+                  @blur="section.editingLabel = false"
+                  @click.stop
+                />
+                <Button
+                  v-if="section.editingLabel"
+                  icon="lucide-check"
+                  class="!size-4 rounded-sm"
+                  variant="ghost"
+                  @click.stop="section.editingLabel = false"
+                />
+              </div>
+            </div>
+            <div class="flex gap-1 items-center">
+              <Button
+                v-if="!section.editingLabel"
+                class="!size-4 rounded-sm"
+                variant="ghost"
+                @click="section.editingLabel = true"
+              >
+                <template #icon>
+                  <EditIcon class="h-3.5" />
+                </template>
+              </Button>
+              <Button
+                v-if="section.editable !== false"
+                class="!size-4 rounded-sm"
+                icon="lucide-x"
+                variant="ghost"
+                @click="sections.splice(sections.indexOf(section), 1)"
+              />
+            </div>
+          </div>
+          <div v-show="section.opened">
+            <Draggable
+              :list="section.columns?.[0].fields || []"
+              group="fields"
+              item-key="fieldname"
+              class="flex flex-col gap-1.5"
+              handle=".cursor-grab"
+            >
+              <template #item="{ element: field }">
+                <div
+                  class="px-2.5 py-2 border border-outline-elevation-2 rounded text-base leading-4 text-ink-gray-8 flex items-center justify-between gap-2"
+                >
+                  <div class="flex items-center gap-2">
+                    <DragVerticalIcon class="h-3.5 cursor-grab" />
+                    <div>{{ field.label }}</div>
+                  </div>
+                  <Button
+                    variant="ghost"
+                    icon="lucide-x"
+                    class="!size-4 rounded-sm"
+                    @click="
+                      section.columns[0].fields.splice(
+                        section.columns[0].fields.indexOf(field),
+                        1,
+                      )
+                    "
+                  />
+                </div>
+              </template>
+            </Draggable>
+            <Combobox
+              v-if="section.editable !== false"
+              :model-value="null"
+              :options="fields"
+              @update:selected-option="(e) => addField(section, e)"
+            >
+              <template #trigger="{ open, setOpen }">
+                <Button
+                  class="w-full h-8 mt-1.5 !bg-surface-gray-1"
+                  variant="outline"
+                  :label="__('Add Field')"
+                  iconLeft="plus"
+                  @click="setOpen(!open)"
+                />
+              </template>
+              <template #item-label="{ item }">
+                <div class="flex flex-col gap-1 text-ink-gray-9">
+                  <div>{{ item.label }}</div>
+                  <div class="text-ink-gray-4 text-sm">
+                    {{ `${item.fieldname} - ${item.fieldtype}` }}
+                  </div>
+                </div>
+              </template>
+            </Combobox>
+            <div
+              v-else
+              class="flex justify-center items-center border rounded border-dashed border-outline-elevation-2 p-3"
+            >
+              <div class="text-sm text-ink-gray-4">
+                {{ __('This section is not editable') }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </template>
+    </Draggable>
+    <div class="mt-5.5">
+      <Button
+        class="w-full h-8"
+        variant="subtle"
+        :label="__('Add Section')"
+        iconLeft="plus"
+        @click="
+          sections.push({
+            label: __('New Section'),
+            opened: true,
+            name: 'section_' + getRandom(),
+            columns: [{ name: 'column_' + getRandom(), fields: [] }],
+          })
+        "
+      />
+    </div>
+  </div>
+</template>
+<script setup>
+import EditIcon from '@/components/Icons/EditIcon.vue'
+import DragVerticalIcon from '@/components/Icons/DragVerticalIcon.vue'
+import { getRandom } from '@/utils'
+import { getMeta } from '@/stores/meta'
+import Draggable from 'vuedraggable'
+import { Combobox, Input } from 'frappe-ui'
+import { computed } from 'vue'
+
+const props = defineProps({
+  doctype: { type: String, default: 'CRM Lead' },
+})
+
+const sections = defineModel({ type: Array, default: () => [] })
+
+const restrictedFieldTypes = [
+  'Section Break',
+  'Column Break',
+  'Tab Break',
+  'Table',
+  'Table MultiSelect',
+  'Signature',
+  'Image',
+]
+
+const { getFields } = getMeta(props.doctype)
+
+const fields = computed(() => {
+  let _fields =
+    getFields({ restrictNoValueFields: false, restrictedFieldTypes }) || []
+  if (!_fields.length) return []
+
+  return _fields.map((field) => {
+    return {
+      label: field.label,
+      value: field.fieldname,
+      fieldname: field.fieldname,
+      fieldtype: field.fieldtype,
+    }
+  })
+})
+
+function addField(section, field) {
+  if (!field) return
+  section.columns[0].fields.push(field)
+}
+</script>
