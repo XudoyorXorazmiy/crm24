@@ -1,0 +1,14 @@
+# Keep the Railway build context small — the Dockerfile COPYs the whole repo into
+# the image before handing it to `bench get-app`.
+.git
+.github/screenshots
+node_modules
+frontend/node_modules
+frontend/coverage
+frontend/dev-dist
+e2e
+test-results
+playwright-report
+**/__pycache__
+**/*.pyc
+.DS_Store
