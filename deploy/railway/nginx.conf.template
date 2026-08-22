@@ -1,0 +1,86 @@
+# Rendered by entrypoint.sh with envsubst -> /home/frappe/nginx.conf
+# Runs unprivileged (no master/worker split as root), so every writable path is
+# redirected out of /var into places the frappe user owns.
+worker_processes 1;
+pid /run/nginx/nginx.pid;
+error_log /dev/stderr warn;
+
+events {
+  worker_connections 1024;
+}
+
+http {
+  include /etc/nginx/mime.types;
+  default_type application/octet-stream;
+
+  access_log /dev/stdout;
+  client_body_temp_path /tmp/nginx-body;
+  proxy_temp_path /tmp/nginx-proxy;
+  fastcgi_temp_path /tmp/nginx-fastcgi;
+  uwsgi_temp_path /tmp/nginx-uwsgi;
+  scgi_temp_path /tmp/nginx-scgi;
+
+  sendfile on;
+  keepalive_timeout 65;
+  client_max_body_size ${MAX_UPLOAD_SIZE};
+
+  gzip on;
+  gzip_types text/plain text/css application/json application/javascript text/javascript image/svg+xml;
+
+  map $http_upgrade $connection_upgrade {
+    default upgrade;
+    ''      close;
+  }
+
+  upstream frappe_web    { server 127.0.0.1:8000 fail_timeout=0; }
+  upstream frappe_socket { server 127.0.0.1:9000 fail_timeout=0; }
+
+  server {
+    listen ${PORT};
+    server_name _;
+    root /home/frappe/frappe-bench/sites;
+
+    # Frappe resolves the tenant from this header, not from Host — Railway's
+    # generated domain never matches the site name on disk.
+    proxy_set_header X-Frappe-Site-Name ${SITE_NAME};
+    proxy_set_header Host $host;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $http_x_forwarded_proto;
+    proxy_set_header X-Real-IP $remote_addr;
+
+    location /assets {
+      try_files $uri =404;
+      add_header Cache-Control "public, max-age=31536000, immutable";
+    }
+
+    location /files {
+      try_files /${SITE_NAME}/public$uri @webserver;
+    }
+
+    # Private files are served through X-Accel-Redirect: the backend authorises the
+    # request and hands nginx an internal path under /protected/.
+    location /protected/ {
+      internal;
+      alias /home/frappe/frappe-bench/sites/${SITE_NAME}/;
+    }
+
+    location /socket.io {
+      proxy_http_version 1.1;
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection $connection_upgrade;
+      proxy_pass http://frappe_socket;
+    }
+
+    location / {
+      proxy_pass http://frappe_web;
+      proxy_read_timeout 120;
+      proxy_redirect off;
+    }
+
+    location @webserver {
+      proxy_pass http://frappe_web;
+      proxy_read_timeout 120;
+      proxy_redirect off;
+    }
+  }
+}

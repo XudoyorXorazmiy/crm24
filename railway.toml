@@ -1,0 +1,10 @@
+[build]
+builder = "dockerfile"
+dockerfilePath = "deploy/railway/Dockerfile"
+
+[deploy]
+healthcheckPath = "/api/method/ping"
+healthcheckTimeout = 300
+restartPolicyType = "on_failure"
+restartPolicyMaxRetries = 3
+numReplicas = 1
