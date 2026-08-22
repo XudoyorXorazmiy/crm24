@@ -5,6 +5,15 @@ set -euo pipefail
 
 BENCH=/home/frappe/frappe-bench
 TEMPLATE=/home/frappe/sites-template
+
+# Railway hands the volume over owned by root. Take ownership while we still are
+# root, then drop to frappe — bench refuses to run as root, and nginx here is
+# configured to write only to paths frappe owns.
+if [ "$(id -u)" = "0" ]; then
+  chown -R frappe:frappe "$BENCH/sites"
+  exec gosu frappe "$0" "$@"
+fi
+
 cd "$BENCH"
 
 # ── Environment ──────────────────────────────────────────────────────────────

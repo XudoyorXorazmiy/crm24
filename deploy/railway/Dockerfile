@@ -16,7 +16,8 @@ ENV PYTHONUNBUFFERED=1 \
 
 # mariadb-client is required by `bench new-site` (it pipes the framework's schema
 # through the mysql CLI); libmariadb-dev is what mysqlclient compiles against;
-# cron supplies the /usr/bin/crontab that `bench init` shells out to.
+# cron supplies the /usr/bin/crontab that `bench init` shells out to; gosu lets the
+# entrypoint fix the volume's ownership as root and then drop back to frappe.
 RUN apt-get update && apt-get install -y --no-install-recommends \
       ca-certificates curl wget gnupg git \
       build-essential pkg-config \
@@ -24,7 +25,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
       libffi-dev libssl-dev libbz2-dev \
       libjpeg-dev zlib1g-dev libwebp-dev libfreetype6-dev \
       nginx gettext-base \
-      cron \
+      cron gosu \
     && curl -fsSL https://deb.nodesource.com/setup_24.x | bash - \
     && apt-get install -y --no-install-recommends nodejs \
     && npm install -g yarn \
@@ -70,5 +71,9 @@ COPY --chown=frappe:frappe deploy/railway/entrypoint.sh /home/frappe/entrypoint.
 COPY --chown=frappe:frappe deploy/railway/nginx.conf.template /home/frappe/nginx.conf.template
 COPY --chown=frappe:frappe deploy/railway/Procfile /home/frappe/Procfile
 RUN chmod +x /home/frappe/entrypoint.sh
+
+# Railway mounts volumes owned by root, so the entrypoint has to start privileged;
+# it chowns sites/ and re-executes itself as frappe (bench refuses to run as root).
+USER root
 
 CMD ["/home/frappe/entrypoint.sh"]
