@@ -124,6 +124,11 @@ fi
 
 echo "$SITE_NAME" > "$BENCH/sites/currentsite.txt"
 
+# Frappe leaves the scheduler off on freshly created sites. Everything time-based
+# depends on it — the email queue, notifications, and the Facebook lead sync cron
+# in crm/hooks.py — so turn it on every boot (idempotent).
+bench --site "$SITE_NAME" enable-scheduler
+
 # ── nginx ────────────────────────────────────────────────────────────────────
 mkdir -p /tmp/nginx-body /tmp/nginx-proxy /tmp/nginx-fastcgi /tmp/nginx-uwsgi /tmp/nginx-scgi
 envsubst '${PORT} ${SITE_NAME} ${MAX_UPLOAD_SIZE}' \
