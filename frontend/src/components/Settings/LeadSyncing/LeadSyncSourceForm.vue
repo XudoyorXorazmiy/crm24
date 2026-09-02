@@ -43,7 +43,7 @@
     <Tabs v-model="tabIndex" as="div" :tabs="tabs" class="mt-2">
       <template #tab-panel="{ tab }">
         <div
-          v-if="tab.label == 'Details'"
+          v-if="tab.name === 'details'"
           class="overflow-hidden flex h-full flex-col gap-6 mt-4"
         >
           <!-- Form -->
@@ -153,7 +153,7 @@
           </div>
         </div>
 
-        <div v-if="tab.label == 'Failure Logs'" class="mt-4">
+        <div v-if="tab.name === 'failure-logs'" class="mt-4">
           <FailureLogs :source="syncSource.name" />
         </div>
       </template>
@@ -191,9 +191,12 @@ const props = defineProps({
 
 const emit = defineEmits(['updateStep'])
 
+// `name` is what the panels switch on. Matching on `label` would break under any
+// translation, since the label is already passed through __().
 const tabs = computed(() => {
   const tabList = [
     {
+      name: 'details',
       label: __('Details'),
       icon: DetailsIcon,
     },
@@ -201,6 +204,7 @@ const tabs = computed(() => {
 
   if (!isLocal.value) {
     tabList.push({
+      name: 'failure-logs',
       label: __('Failure Logs'),
       icon: RefreshIcon,
     })

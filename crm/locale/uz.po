@@ -1020,7 +1020,7 @@ msgstr ""
 #: crm/lead_syncing/doctype/lead_sync_source/lead_sync_source.json
 #: frontend/src/components/Settings/LeadSyncing/LeadSyncSourceForm.vue:83
 msgid "Background Sync Frequency"
-msgstr "Fon sinxronizatsiyasi chastotasi"
+msgstr "Fon sinxronlash chastotasi"
 
 #. Option for the 'Status' (Select) field in DocType 'CRM Task'
 #: crm/fcrm/doctype/crm_task/crm_task.json
@@ -4438,7 +4438,7 @@ msgstr "Potentsial mijozlarning maqomlari"
 #. Name of a DocType
 #: crm/lead_syncing/doctype/lead_sync_source/lead_sync_source.json
 msgid "Lead Sync Source"
-msgstr "Mijozlarni sinxronlashtirish manbai"
+msgstr "Lid manbasi"
 
 #: frontend/src/components/Settings/LeadSyncing/LeadSyncSourceForm.vue:285
 msgid "Lead Sync Source created successfully"
@@ -4446,7 +4446,7 @@ msgstr "Mijozlarni sinxronlashtirish manbai muvaffaqiyatli yaratildi"
 
 #: frontend/src/components/Settings/Settings.vue:237
 msgid "Lead Syncing"
-msgstr "Mijozlarni sinxronlashtirish"
+msgstr "Lidlarni sinxronlash"
 
 #: frontend/src/components/Settings/Hierarchy/Hierarchy.vue:311
 msgid "Lead and deal visibility will no longer be restricted by the reporting tree. Are you sure?"
@@ -5017,7 +5017,7 @@ msgstr "Yangi tadbir"
 
 #: frontend/src/components/Settings/LeadSyncing/LeadSyncSourceForm.vue:9
 msgid "New Lead Sync Source"
-msgstr "Yangi mijozlarni sinxronlashtirish manbai"
+msgstr "Yangi lid manbasi"
 
 #: frontend/src/components/Activities/ActivityHeader.vue:66
 msgid "New Message"
@@ -7309,7 +7309,7 @@ msgstr "Elektron pochta xabarlarini yuborishda chiquvchi elektron pochta hisobla
 #: frontend/src/components/Settings/ERPNextSettings.vue:206
 #: frontend/src/components/Settings/LeadSyncing/LeadSyncSourceForm.vue:23
 msgid "Sync Now"
-msgstr "Hozir sinxronlashtiring"
+msgstr "Hozir sinxronlash"
 
 #: frontend/src/components/Settings/ERPNextSettings.vue:191
 msgid "Sync Products with ERPNext"
