@@ -52,6 +52,8 @@ WORKDIR /home/frappe/frappe-bench
 
 # bench get-app clones, so the build context needs to be a git repo of its own.
 # The directory must be named `crm` — bench derives the app name from it.
+# compile-po-to-mo is not optional: Frappe reads translations from the compiled
+# .mo catalogue under sites/assets/locale, never from the .po sources.
 COPY --chown=frappe:frappe . /tmp/crm
 RUN cd /tmp/crm \
     && rm -rf .git node_modules frontend/node_modules \
@@ -61,6 +63,7 @@ RUN cd /tmp/crm \
     && cd /home/frappe/frappe-bench \
     && bench get-app /tmp/crm \
     && bench build --production --app crm \
+    && bench compile-po-to-mo --app crm \
     && rm -rf /tmp/crm /home/frappe/.cache/yarn
 
 # The volume gets mounted over sites/, hiding whatever the image put there. Keep a

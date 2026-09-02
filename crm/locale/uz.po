@@ -717,7 +717,7 @@ msgstr "\"CRM bitimidan kotirovka yaratish\" formasi skriptini qayta o'rnatmoqch
 
 #: frontend/src/components/Settings/DashboardSettings.vue:236
 msgid "Are you sure you want to set the currency as {0}? This cannot be changed later."
-msgstr "Valyutani {0}sifatida o'rnatmoqchimisiz? Buni keyinroq o'zgartirib bo'lmaydi."
+msgstr "Valyutani {0} sifatida o'rnatmoqchimisiz? Keyin buni o'zgartirib bo'lmaydi."
 
 #: frontend/src/components/DeleteLinkedDocModal.vue:237
 msgid "Are you sure you want to unlink {0} linked item(s)?"
@@ -920,7 +920,7 @@ msgstr "Javob olinganda, mijoz yoki kelishuv uchun avtomatik ravishda Aloqa hola
 #: crm/fcrm/doctype/fcrm_settings/fcrm_settings.json
 #: frontend/src/components/Settings/DashboardSettings.vue:53
 msgid "Automatically update \"Expected Deal Value\" based on the total value of associated products in a deal"
-msgstr "Bitimdagi tegishli mahsulotlarning umumiy qiymati asosida \"Kutilayotgan bitim qiymati\"ni avtomatik ravishda yangilash"
+msgstr "Bitimdagi mahsulotlarning umumiy qiymatiga qarab \"Kutilayotgan bitim qiymati\"ni avtomatik yangilaydi"
 
 #: frontend/src/components/Settings/Settings.vue:190
 msgid "Automation & Rules"
@@ -928,23 +928,23 @@ msgstr "Avtomatlashtirish va qoidalar"
 
 #: crm/api/dashboard.py:252
 msgid "Average deal value of non won/lost deals"
-msgstr "Yutuqsiz/yutqazilmagan bitimlarning o'rtacha qiymati"
+msgstr "Yutilmagan va yutqazilmagan bitimlarning o'rtacha qiymati"
 
 #: crm/api/dashboard.py:419
 msgid "Average deal value of ongoing & won deals"
-msgstr "Davom etayotgan va yutib olingan bitimlarning o'rtacha qiymati"
+msgstr "Jarayondagi va yutilgan bitimlarning o'rtacha qiymati"
 
 #: crm/api/dashboard.py:365
 msgid "Average deal value of won deals"
-msgstr "Yutuqli bitimlarning o'rtacha qiymati"
+msgstr "Yutilgan bitimlarning o'rtacha qiymati"
 
 #: crm/api/dashboard.py:546
 msgid "Average time taken from deal creation to deal closure"
-msgstr "Bitim tuzilgan paytdan boshlab bitim yakunlanishigacha bo'lgan o'rtacha vaqt"
+msgstr "Bitim yaratilganidan yopilgunicha o'tgan o'rtacha vaqt"
 
 #: crm/api/dashboard.py:483
 msgid "Average time taken from lead creation to deal closure"
-msgstr "Potentsial mijozlarni jalb qilishdan bitim tuzishgacha bo'lgan o'rtacha vaqt"
+msgstr "Lid yaratilganidan bitim yopilgunicha o'tgan o'rtacha vaqt"
 
 #: frontend/src/components/Dashboard/AddChartModal.vue:77
 msgid "Avg Deal Value"
@@ -968,23 +968,23 @@ msgstr "O'rtacha vonlik bitim qiymati"
 
 #: crm/api/dashboard.py:418
 msgid "Avg. deal value"
-msgstr "O'rtacha bitim qiymati"
+msgstr "Bitimning o'rtacha qiymati"
 
 #: crm/api/dashboard.py:251
 msgid "Avg. ongoing deal value"
-msgstr "O'rtacha davom etayotgan bitim qiymati"
+msgstr "Jarayondagi bitimning o'rtacha qiymati"
 
 #: crm/api/dashboard.py:545
 msgid "Avg. time to close a deal"
-msgstr "Bitimni yopish uchun o'rtacha vaqt"
+msgstr "Bitimni yopishgacha o'rtacha vaqt"
 
 #: crm/api/dashboard.py:482
 msgid "Avg. time to close a lead"
-msgstr "Liderni yopish uchun o'rtacha vaqt"
+msgstr "Lidni yopishgacha o'rtacha vaqt"
 
 #: crm/api/dashboard.py:364
 msgid "Avg. won deal value"
-msgstr "O'rtacha von bitim qiymati"
+msgstr "Yutilgan bitimning o'rtacha qiymati"
 
 #: frontend/src/components/Dashboard/AddChartModal.vue:22
 #: frontend/src/components/Dashboard/AddChartModal.vue:66
@@ -1607,7 +1607,7 @@ msgstr "Izohlar"
 
 #: crm/api/dashboard.py:938
 msgid "Common reasons for losing deals"
-msgstr "Bitimlarni yo'qotishning keng tarqalgan sabablari"
+msgstr "Bitimlarni yutqazishning keng tarqalgan sabablari"
 
 #. Label of the communication_status (Link) field in DocType 'CRM Deal'
 #. Label of the communication_status (Link) field in DocType 'CRM Lead'
@@ -1747,7 +1747,7 @@ msgstr "Elektron pochtangizni ulang"
 #: frontend/src/components/Layouts/AppSidebar.vue:582
 #: frontend/src/components/Modals/ConvertToDealModal.vue:51
 msgid "Contact"
-msgstr "Aloqa"
+msgstr "Kontakt"
 
 #: frontend/src/pages/Deal.vue:682 frontend/src/pages/MobileDeal.vue:551
 msgid "Contact Added"
@@ -1876,7 +1876,7 @@ msgstr "Hisobotni yangilab bo'lmadi"
 #: crm/api/dashboard.py:647 crm/api/dashboard.py:795 crm/api/dashboard.py:852
 #: crm/api/dashboard.py:945
 msgid "Count"
-msgstr "Hisoblash"
+msgstr "Soni"
 
 #: frontend/src/components/Modals/ContactModal.vue:41
 #: frontend/src/components/Modals/CreateDocumentModal.vue:88
@@ -1996,7 +1996,7 @@ msgstr "Joriy parol"
 
 #: crm/api/dashboard.py:896
 msgid "Current pipeline distribution"
-msgstr "Hozirgi quvur liniyasi taqsimoti"
+msgstr "Sotuv quvurining joriy taqsimoti"
 
 #: frontend/src/components/Layouts/AppSidebar.vue:621
 msgid "Custom Actions"
@@ -2047,7 +2047,7 @@ msgstr "Kundalik"
 
 #: crm/api/dashboard.py:639
 msgid "Daily performance of leads, deals, and wins"
-msgstr "Potentsial mijozlar, bitimlar va yutuqlarning kunlik natijalari"
+msgstr "Lidlar, bitimlar va yutuqlarning kunlik dinamikasi"
 
 #: frontend/src/components/Settings/ThemeSwitcher.vue:89
 msgid "Dark"
@@ -2143,7 +2143,7 @@ msgstr "Bitim qiymati"
 
 #: crm/api/dashboard.py:1023
 msgid "Deal generation channel analysis"
-msgstr "Bitimlarni yaratish kanalini tahlil qilish"
+msgstr "Bitim keltirgan kanallar tahlili"
 
 #: frontend/src/components/Settings/ERPNextSettings.vue:522
 msgid "Deal status is required"
@@ -2159,7 +2159,7 @@ msgstr "Bitim qiymati"
 #: frontend/src/pages/MobileDeal.vue:391
 #: frontend/src/pages/MobileOrganization.vue:343
 msgid "Deals"
-msgstr "Chegirmalar"
+msgstr "Bitimlar"
 
 #: frontend/src/components/Dashboard/AddChartModal.vue:93
 msgid "Deals by Ongoing & Won Stage"
@@ -2183,19 +2183,19 @@ msgstr "Hudud bo'yicha takliflar"
 
 #: crm/api/dashboard.py:846
 msgid "Deals by ongoing & won stage"
-msgstr "Davom etayotgan va yutib olingan bosqichlar bo'yicha takliflar"
+msgstr "Jarayondagi va yutilgan bosqichlar bo'yicha bitimlar"
 
 #: crm/api/dashboard.py:1130
 msgid "Deals by salesperson"
-msgstr "Sotuvchi tomonidan takliflar"
+msgstr "Sotuvchilar bo'yicha bitimlar"
 
 #: crm/api/dashboard.py:1022
 msgid "Deals by source"
-msgstr "Manba bo'yicha takliflar"
+msgstr "Manbalar bo'yicha bitimlar"
 
 #: crm/api/dashboard.py:895
 msgid "Deals by stage"
-msgstr "Bosqichma-bosqich bitimlar"
+msgstr "Bosqichlar bo'yicha bitimlar"
 
 #: crm/api/dashboard.py:1067
 msgid "Deals by territory"
@@ -3566,7 +3566,7 @@ msgstr "Bashorat qilingan daromad"
 
 #: crm/api/dashboard.py:718
 msgid "Forecasted revenue"
-msgstr "Bashorat qilingan daromad"
+msgstr "Prognoz qilingan daromad"
 
 #. Option for the 'Apply To' (Select) field in DocType 'CRM Form Script'
 #: crm/fcrm/doctype/crm_form_script/crm_form_script.json
@@ -3679,7 +3679,7 @@ msgstr "Umumiy sozlamalar"
 
 #: crm/api/dashboard.py:1068
 msgid "Geographic distribution of deals and revenue"
-msgstr "Bitimlar va daromadlarning geografik taqsimoti"
+msgstr "Bitimlar va daromadning hududiy taqsimoti"
 
 #: frontend/src/components/Modals/AboutModal.vue:55
 msgid "GitHub Repository"
@@ -4397,7 +4397,7 @@ msgstr "Joylashtirish"
 #: frontend/src/components/Telephony/ExotelCallUI.vue:200
 #: frontend/src/pages/Tasks.vue:133
 msgid "Lead"
-msgstr "Qo'rg'oshin"
+msgstr "Lid"
 
 #. Label of the lead_data (Code) field in DocType 'Failed Lead Sync Log'
 #: crm/lead_syncing/doctype/failed_lead_sync_log/failed_lead_sync_log.json
@@ -4458,7 +4458,7 @@ msgstr "{0} qo'ng'irog'idan mijoz"
 
 #: crm/api/dashboard.py:985
 msgid "Lead generation channel analysis"
-msgstr "Mijozlarni jalb qilish kanallarini tahlil qilish"
+msgstr "Lid keltirgan kanallar tahlili"
 
 #: crm/lead_syncing/doctype/lead_sync_source/lead_sync_source.js:8
 msgid "Lead sync initiated."
@@ -4470,14 +4470,14 @@ msgstr "Mijozlarni sinxronlashtirish manbai muvaffaqiyatli o'chirildi"
 
 #: crm/api/dashboard.py:788
 msgid "Lead to deal conversion pipeline"
-msgstr "Kelishuvga erishish uchun konversiya quvur liniyasi"
+msgstr "Liddan bitimga o'tish quvuri"
 
 #. Label of a shortcut in the Frappe CRM Workspace
 #: crm/fcrm/workspace/frappe_crm/frappe_crm.json
 #: frontend/src/pages/InvalidPage.vue:9 frontend/src/pages/Lead.vue:369
 #: frontend/src/pages/MobileLead.vue:239
 msgid "Leads"
-msgstr "Potentsial mijozlar"
+msgstr "Lidlar"
 
 #: frontend/src/components/Dashboard/AddChartModal.vue:102
 msgid "Leads by Source"
@@ -4485,7 +4485,7 @@ msgstr "Manba bo'yicha yetakchilar"
 
 #: crm/api/dashboard.py:984
 msgid "Leads by source"
-msgstr "Manba bo'yicha yetakchilar"
+msgstr "Manbalar bo'yicha lidlar"
 
 #: frontend/src/components/Settings/AssignmentRules/AssignmentRuleView.vue:158
 #: frontend/src/components/Settings/AssignmentRules/AssignmentRuleView.vue:238
@@ -4615,7 +4615,7 @@ msgstr "Logotip"
 #: crm/fcrm/doctype/crm_deal_status/crm_deal_status.json
 #: crm/fcrm/doctype/crm_lead_status/crm_lead_status.json
 msgid "Lost"
-msgstr "Yo'qolgan"
+msgstr "Yutqazilgan"
 
 #: frontend/src/components/Dashboard/AddChartModal.vue:94
 msgid "Lost Deal Reasons"
@@ -4657,7 +4657,7 @@ msgstr "Yo'qotilgan sabab talab qilinadi"
 
 #: crm/api/dashboard.py:937
 msgid "Lost deal reasons"
-msgstr "Yo'qotilgan bitim sabablari"
+msgstr "Bitim yutqazish sabablari"
 
 #. Option for the 'Priority' (Select) field in DocType 'CRM Task'
 #: crm/fcrm/doctype/crm_task/crm_task.json
@@ -4701,7 +4701,7 @@ msgstr "{0} ni standart qo'ng'iroq vositasi sifatida belgilang"
 
 #: frontend/src/components/Settings/DashboardSettings.vue:35
 msgid "Makes \"Expected Closure Date\" and \"Expected Deal Value\" mandatory for deal value forecasting"
-msgstr "Bitim qiymatini prognoz qilish uchun \"Kutilayotgan yopilish sanasi\" va \"Kutilayotgan bitim qiymati\" ni majburiy qiladi"
+msgstr "Bitim qiymatini prognoz qilish uchun \"Kutilayotgan yopilish sanasi\" va \"Kutilayotgan bitim qiymati\"ni majburiy qiladi"
 
 #: frontend/src/components/Settings/Users.vue:11
 msgid "Manage CRM users by adding or inviting them, and assign roles to control their access and permissions"
@@ -5369,7 +5369,7 @@ msgstr "Qayd o'chirildi"
 #: frontend/src/pages/Deal.vue:596 frontend/src/pages/Lead.vue:448
 #: frontend/src/pages/MobileDeal.vue:468 frontend/src/pages/MobileLead.vue:315
 msgid "Notes"
-msgstr "Izohlar"
+msgstr "Eslatmalar"
 
 #: frontend/src/pages/Notes.vue:23
 msgid "Notes View"
@@ -5431,7 +5431,7 @@ msgstr "Bitimlar soni"
 
 #: crm/api/dashboard.py:1131
 msgid "Number of deals and total value per salesperson"
-msgstr "Bitimlar soni va har bir sotuvchi uchun umumiy qiymat"
+msgstr "Har bir sotuvchi bo'yicha bitimlar soni va umumiy qiymati"
 
 #: frontend/src/components/Settings/DefaultsSettings.vue:95
 msgid "Number of decimal places for non-currency numeric fields"
@@ -5481,11 +5481,11 @@ msgstr "Davom etmoqda"
 
 #: frontend/src/components/Dashboard/AddChartModal.vue:73
 msgid "Ongoing Deals"
-msgstr "Davom etayotgan takliflar"
+msgstr "Jarayondagi bitimlar"
 
 #: crm/api/dashboard.py:189
 msgid "Ongoing deals"
-msgstr "Davom etayotgan takliflar"
+msgstr "Jarayondagi bitimlar"
 
 #: crm/api/user.py:62 crm/api/user.py:95
 msgid "Only System Managers can assign the Sales Manager role"
@@ -6022,7 +6022,7 @@ msgstr "Profil muvaffaqiyatli yangilandi"
 
 #: crm/api/dashboard.py:719
 msgid "Projected vs actual revenue based on deal probability"
-msgstr "Bitim ehtimoliga asoslangan prognoz qilingan va haqiqiy daromad"
+msgstr "Bitim ehtimoliga asoslangan prognoz va haqiqiy daromad"
 
 #. Label of the public (Check) field in DocType 'CRM View Settings'
 #: crm/fcrm/doctype/crm_view_settings/crm_view_settings.json
@@ -6624,11 +6624,11 @@ msgstr "Savdo trendi"
 #: frontend/src/components/Settings/Users.vue:246
 #: frontend/src/pages/Dashboard.vue:95
 msgid "Sales User"
-msgstr "Savdo foydalanuvchisi"
+msgstr "Sotuv menejeri"
 
 #: crm/api/dashboard.py:638
 msgid "Sales trend"
-msgstr "Savdo tendentsiyasi"
+msgstr "Sotuv dinamikasi"
 
 #: frontend/src/pages/PersonaForm.vue:61
 msgid "Salesforce"
@@ -6883,7 +6883,7 @@ msgstr "Asosiy sifatida o'rnatish"
 
 #: frontend/src/components/Settings/DashboardSettings.vue:235
 msgid "Set Currency"
-msgstr "Valyutani o'rnating"
+msgstr "Valyutani o'rnatish"
 
 #: frontend/src/components/Settings/Sla/EditResponseResolutionModal.vue:29
 msgid "Set Default Priority"
@@ -7162,7 +7162,7 @@ msgstr "Manba muvaffaqiyatli yoqildi"
 #: frontend/src/components/Dashboard/AddChartModal.vue:64
 #: frontend/src/components/Dashboard/DashboardItem.vue:21
 msgid "Spacer"
-msgstr "Spacer"
+msgstr "Bo'sh joy"
 
 #: frontend/src/pages/PersonaForm.vue:59
 msgid "Spreadsheets"
@@ -7170,7 +7170,7 @@ msgstr ""
 
 #: crm/api/dashboard.py:790 crm/api/dashboard.py:848
 msgid "Stage"
-msgstr "Sahna"
+msgstr "Bosqich"
 
 #: crm/fcrm/doctype/crm_form_script/crm_form_script.js:15
 msgid "Standard Form Scripts can not be modified, duplicate the Form Script instead."
@@ -7713,19 +7713,19 @@ msgstr "Chegirmadan keyingi jami"
 
 #: crm/api/dashboard.py:130
 msgid "Total leads"
-msgstr "Jami potensial mijozlar"
+msgstr "Jami lidlar"
 
 #: crm/api/dashboard.py:131
 msgid "Total number of leads"
-msgstr "Umumiy mijozlar soni"
+msgstr "Lidlarning umumiy soni"
 
 #: crm/api/dashboard.py:190
 msgid "Total number of non won/lost deals"
-msgstr "Yutuqsiz/yutqazilmagan bitimlarning umumiy soni"
+msgstr "Yutilmagan va yutqazilmagan bitimlar soni"
 
 #: crm/api/dashboard.py:307
 msgid "Total number of won deals based on its closure date"
-msgstr "Yopilish sanasiga qarab yutib olingan bitimlarning umumiy soni"
+msgstr "Yopilish sanasi bo'yicha yutilgan bitimlarning umumiy soni"
 
 #. Label of the traceback (Code) field in DocType 'Failed Lead Sync Log'
 #: crm/lead_syncing/doctype/failed_lead_sync_log/failed_lead_sync_log.json
@@ -8218,7 +8218,7 @@ msgstr "Kenglik son, piksel yoki rem bilan ifodalanishi mumkin (masalan, 3, 30px
 #: crm/fcrm/doctype/crm_lead_status/crm_lead_status.json
 #: frontend/src/components/Settings/ERPNextSettings.vue:254
 msgid "Won"
-msgstr "G'alaba qozondi"
+msgstr "Yutilgan"
 
 #: frontend/src/components/Dashboard/AddChartModal.vue:75
 msgid "Won Deals"
@@ -8226,7 +8226,7 @@ msgstr "Yutuqli bitimlar"
 
 #: crm/api/dashboard.py:306
 msgid "Won deals"
-msgstr "Yutuqli bitimlar"
+msgstr "Yutilgan bitimlar"
 
 #: frontend/src/components/Settings/Sla/SlaHolidays.vue:5
 msgid "Work Schedule & Holidays"
@@ -8462,7 +8462,7 @@ msgstr "kunlar oldin"
 #: frontend/src/components/Settings/AssignmentRules/AssigneeRules.vue:135
 #: frontend/src/components/Settings/AssignmentRules/AssignmentRuleView.vue:380
 msgid "deals"
-msgstr "chegirmalar"
+msgstr "bitimlar"
 
 #: frontend/src/components/Settings/AssignmentRules/AssignmentRuleView.vue:190
 #: frontend/src/components/Settings/AssignmentRules/AssignmentRuleView.vue:274
@@ -8631,7 +8631,7 @@ msgstr "yorliq"
 #: frontend/src/components/Settings/AssignmentRules/AssigneeRules.vue:134
 #: frontend/src/components/Settings/AssignmentRules/AssignmentRuleView.vue:379
 msgid "leads"
-msgstr "potensiallar"
+msgstr "lidlar"
 
 #. Option for the 'Type' (Select) field in DocType 'CRM View Settings'
 #: crm/fcrm/doctype/crm_view_settings/crm_view_settings.json
@@ -8926,3 +8926,23 @@ msgstr "⚠️ Ota-ona maydoni uchun ma'lumotlar topilmadi: {0}"
 msgid "⚠️ No row found for idx: {0} in parent field: {1}"
 msgstr "⚠️ Ota-ona maydonida idx: {0} uchun qator topilmadi: {1}"
 
+
+#. Added by the crm24 fork - missing from the Crowdin catalogue.
+
+msgid "Open Deals"
+msgstr "Ochiq bitimlar"
+
+msgid "Pipeline"
+msgstr "Sotuv quvuri"
+
+msgid "won deals"
+msgstr "yutilgan bitimlar"
+
+msgid "Access key for {0}. Required for fetching exchange rates."
+msgstr "{0} uchun kirish kaliti. Valyuta kurslarini olish uchun zarur."
+
+msgid "Configure the exchange rate provider for your CRM"
+msgstr "CRM uchun valyuta kursi provayderini sozlang"
+
+msgid "Please enter the {0} access key."
+msgstr "{0} kirish kalitini kiriting."
